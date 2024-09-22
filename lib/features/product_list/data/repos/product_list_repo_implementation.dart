@@ -11,7 +11,7 @@ class ProductListRepoImplementation implements ProductListRepo {
   ProductListRepoImplementation(this.apiService);
 
   @override
-  Future<Either<Failure, List<ProductModel>>> fetchProductsItems() async {
+  Future<Either<Failure, List<ProductModel>>> fetchProducts() async {
     try {
       var data = await apiService.get();
       List<ProductModel> products =
