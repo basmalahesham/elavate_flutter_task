@@ -20,7 +20,7 @@ class ProductListViewBody extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
-                childAspectRatio: .65,
+                childAspectRatio: .66,
               ),
               itemBuilder: (context, index) => CustomProduct(
                 productModel: state.products[index],

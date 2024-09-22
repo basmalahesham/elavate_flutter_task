@@ -27,9 +27,8 @@ class CustomProduct extends StatelessWidget {
             children: [
               CachedNetworkImage(
                 imageUrl: productModel.image??'',
-                fit: BoxFit.fill,
                 width: double.infinity,
-                height: 130,
+                height: 135,
                 errorWidget: (context, url, error) => const Icon(Icons.error),
                 placeholder: (context, url) =>
                 const Center(child: Center(child: CircularProgressIndicator())),
