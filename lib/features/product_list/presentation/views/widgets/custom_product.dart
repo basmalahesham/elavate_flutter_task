@@ -1,9 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:elevate_flutter_task/features/product_list/data/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomProduct extends StatelessWidget {
-  const CustomProduct({super.key});
+  const CustomProduct({super.key, required this.productModel});
+  final ProductModel productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +25,14 @@ class CustomProduct extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Image.asset(
-                'assets/images/Frame 68.png',
+              CachedNetworkImage(
+                imageUrl: productModel.image??'',
                 fit: BoxFit.fill,
-                width: 210,
-                height: 135,
+                width: double.infinity,
+                height: 130,
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+                placeholder: (context, url) =>
+                const Center(child: Center(child: CircularProgressIndicator())),
               ),
               Positioned(
                 right: 10,
@@ -56,39 +62,39 @@ class CustomProduct extends StatelessWidget {
               ),
             ],
           ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
+           Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
                 Text(
-                  'Nike Air Jordon\nNike shoes flexible for wo..',
+                  productModel.title??'',
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color(0xFF06004E),
                     fontSize: 14,
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 Row(
                   children: [
                     Text(
-                      'EGP 1,000 ',
-                      style: TextStyle(
+                      '${productModel.price}',
+                      style: const TextStyle(
                         color: Color(0xFF06004E),
                         fontSize: 14,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 16,
                     ),
-                    Text(
+                    const Text(
                       '1,300 EGP',
                       style: TextStyle(
                         decoration: TextDecoration.lineThrough,
@@ -101,12 +107,12 @@ class CustomProduct extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 Row(
                   children: [
-                    Text(
+                    const Text(
                       'Review',
                       style: TextStyle(
                         color: Color(0xFF06004E),
@@ -115,30 +121,30 @@ class CustomProduct extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 4,
                     ),
                     Text(
-                      '(4.6)',
-                      style: TextStyle(
+                      '${productModel.rating?.rate}',
+                      style: const TextStyle(
                         color: Color(0xFF06004E),
                         fontSize: 12,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 4,
                     ),
-                    Icon(
+                    const Icon(
                       FontAwesomeIcons.solidStar,
                       size: 15,
                       color: Color(0xffFFDD4F),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.add_circle,
                       color: Color(0xFF004182),
                       size: 30,
